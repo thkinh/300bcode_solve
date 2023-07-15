@@ -1,0 +1,2 @@
+- My first repo
+- Use c++ for solving "300 coding lessons for children" 
