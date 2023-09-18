@@ -8,7 +8,6 @@ class Solution
 {
 public:
     map<char, int> chars;
-    map<char, int> chart;
     int count(char c)
     {
         if (chars.find(c) != chars.end())
@@ -22,14 +21,36 @@ public:
     }
     bool isAnagram(string s, string t)
     {
-        
+        for (int i = 0; i < s.length(); i++)
+        {
+            chars.insert({s[i], count(s[i])});
+        }
+        for (int i = 0; i < t.length(); i++)
+        {
+            if (!chars.count(t[i]))
+            {
+                return false;
+            }
+            else if (chars.count(t[i]))
+            {
+                chars[t[i]]--;
+            }
+        }
+        for (auto x:chars)
+        {
+            if (x.second != 0)
+            {
+                return false;
+            }
+        }        
+        return true;
     }
 };
 
 int main()
 {
     string s = "a";
-    string t = "ab";
+    string t = "a";
     Solution ret;
     cout<<ret.isAnagram(s,t);
 
